@@ -1,0 +1,29 @@
+/* This is a CSS comment. */
+/* You can learn more about CSS tags at w3schools.com or https://developer.mozilla.org/en-US/docs/Web/CSS */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: white
+}    
+body {
+    background-image: url("../images/background_temp.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: auto center;
+}
+button {
+    background-color:  rgba(32, 122, 206, 0.788);
+    border: none;
+    color: white;
+    padding: 13px 29px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: rgba(130, 218, 253, 0.788);
+}
