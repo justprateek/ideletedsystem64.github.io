@@ -1,43 +1,78 @@
-<!-- This is a comment. -->
 <!DOCTYPE HTML>
-
-<!-- Document type, this being HyperText Markup Language, also known as HTML.-->
-
-<link rel ="stylesheet" type="text/css" href="styles/stylemain.css">
-
-<!-- This is the style sheet for the website, It provides the styling that makes buttons and text look how they do on your favorite sites! -->
-
-<title>System64 - Under Construction</title>
-
-<!-- This is the name that will show on the user's browser tab. It can be changed to anything you want.-->
+<link rel="stylesheet" type="text/css" href="styles/stylemain.css">
+<title>IDeletedSystem64 - Home</title>
+<img src="images/branding.png">
 <link rel="icon" href="images/favicon.png" type="image/png">
-<!-- This settings the favicon, That's the icon that shows next to the name on the browser tabl.-->
-<div class=fixed>
+<div class="fixed">
+    <script>
+        
+    var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
 
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+    </script>
     <div>
-        <h1 style="float: left;"><img src="images/ideletedsystem64_borkeon_warning.png" height="200px" width="230px"></h1>
-        <h1>This is currently under construction, Check back later.</h1>
-        <a href="https://github.com/IDeletedSystem64/ideletedsystem64.github.io">
-            <button>Check this out on GitHub</button>
-        </a>
-        <a href="twitter.com/ideletesystem64">
-        <button>Follow me on Twitter for updates</button>
-        </a>
-    </div>    
+        <h1>Hi There!
+            <span class="txt-rotate" data-period="1500" data-rotate="[ &quot; I am IDeletedSystem64&quot;, &quot;I am Sophie&quot;, &quot;I am an artist&quot;, &quot;I learn HTML&quot;, &quot;I fix/break computers&quot;, &quot;meow.&quot; ]"><span class="wrap">I learn HT</span></span>
+           </h1>
+          
+                  <a href="about.html">
+                      <button>Learn More</button>
+                  </a>
+                  <a href="https://github.com/IDeletedSystem64/ideletedsystem64.github.io">
+                  <button>Poke around the code on GitHub</button>
+                  </a>
+              </div>    
 </div>
-<div>
-<style>
-/* This probably isn't the right way to do this but eh it works for now :P */
-
-div.fixed {
-  position: fixed;
-  bottom: 590px;
-  right: 0;
-  width: 1800px;
-}
-
-</style>
-<!-- This is some embedded CSS code. This being a class for div, which can be used by doing <div class=imgalign> </div> -->
-
-
-
