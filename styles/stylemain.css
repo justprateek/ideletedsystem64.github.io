@@ -6,7 +6,7 @@ h1 {
     color: white
 }    
 body {
-    background-image: url("../images/background_temp.jpg");
+    background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: auto center;
@@ -27,3 +27,9 @@ button {
 button:hover {
     background-color: rgba(130, 218, 253, 0.788);
 }
+div.fixed {
+    position: fixed;
+    bottom: 590px;
+    right: 0;
+    width: 1800px;
+  }
